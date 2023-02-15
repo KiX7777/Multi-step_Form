@@ -85,6 +85,7 @@ body {
   width: 3.2rem;
   height: 3.2rem;
   font-size: 1.4rem;
+  cursor: pointer;
   color: #f0f6ff;
   font-weight: 700;
   display: flex;
@@ -182,9 +183,14 @@ body {
   background-color: #02295a;
   color: #f0f6ff;
   padding: 1rem 2rem;
+  cursor: pointer;
+  transition: 300ms ease;
   border-radius: 1rem;
   font-size: 1.2rem;
   font-family: inherit;
+}
+.buttoncont button:hover {
+  background-color: #473dff;
 }
 
 /*# sourceMappingURL=style.css.map */
