@@ -1,0 +1,190 @@
+$primaryblue: #02295a;
+$primarypurple: #473dff;
+$primarypastelblue: hsl(228, 100%, 84%);
+$primarylightblue: hsl(206, 94%, 87%);
+$primaryred: #ed3548;
+$darkgray: #9699ab;
+$middlegray: #d6d9e6;
+$lightgray: #f0f6ff;
+$lightergray: hsl(231, 100%, 99%);
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Ubuntu', sans-serif;
+}
+
+@mixin flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+html {
+  font-size: 62.5%;
+}
+
+body {
+  height: 100vh;
+  overflow: hidden;
+  @include flex();
+  background-color: $lightgray;
+}
+
+.container {
+  width: 70vw;
+  height: 80vh;
+  border-radius: 2rem;
+  padding: 1rem;
+  @include flex();
+  background-color: $lightergray;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+  gap: 6rem;
+}
+
+.sidebar {
+  // flex-grow: 1;
+  background-image: url(/assets/images/bg-sidebar-desktop.svg);
+  background-size: cover;
+  background-position: center center;
+  height: 100%;
+  border-radius: 1rem;
+  width: 25%;
+}
+.main {
+  flex-grow: 1;
+  border-radius: 1rem;
+  border: 1px solid #473dff;
+  height: 100%;
+  @include flex();
+  flex-direction: column;
+  padding: 6rem 8rem;
+  // justify-content: flex-start;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.sidebar {
+  @include flex();
+  flex-direction: column;
+  gap: 3.2rem;
+  align-items: flex-start;
+  padding: 4rem;
+  justify-content: flex-start;
+}
+
+.step {
+  @include flex();
+  gap: 1rem;
+}
+
+.stepinfo {
+  @include flex();
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.32rem;
+}
+.stepNum {
+  width: 3.2rem;
+  height: 3.2rem;
+  font-size: 1.4rem;
+  color: $lightgray;
+  font-weight: 700;
+  @include flex();
+  padding: 1rem;
+  border-radius: 50%;
+  background-color: transparent;
+  border: 1px solid white;
+  transition: 300ms ease;
+}
+
+.stepNum.activeNum {
+  background-color: white;
+  color: #473dff;
+}
+
+.stepnum {
+  font-size: 1.2rem;
+  color: #9699ab;
+}
+.stepTitle {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: $lightgray;
+}
+
+.titlecontainer {
+  @include flex();
+  gap: 1rem;
+  align-items: flex-start;
+  flex-direction: column;
+}
+.titlecontainer {
+  h2 {
+    font-size: 2.4rem;
+    color: #02295a;
+  }
+  p {
+    font-size: 1.4rem;
+    color: #9699ab;
+  }
+}
+
+.main {
+  .titlecontainer,
+  .buttoncont {
+    flex-grow: 1;
+  }
+  form {
+    flex-grow: 5;
+    @include flex();
+    flex-direction: column;
+    margin-top: 4rem;
+    width: 100%;
+
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 1rem;
+  }
+}
+.main form {
+  input {
+    width: 100%;
+    padding: 1rem;
+    border-radius: 1rem;
+    border: 1px solid $middlegray;
+  }
+  input::placeholder {
+    color: $darkgray;
+  }
+
+  input:focus {
+    outline: 1px solid $primarypurple;
+  }
+  input:invalid {
+    outline: 1px solid red;
+  }
+  input:focus:valid {
+    outline: 1px solid greenyellow;
+  }
+  label {
+    font-size: 1.2rem;
+    color: $primaryblue;
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+}
+
+.buttoncont {
+  align-self: flex-end;
+  display: flex;
+  align-items: flex-end;
+  button {
+    background-color: #02295a;
+    color: #f0f6ff;
+    padding: 1rem 2rem;
+    border-radius: 1rem;
+    font-size: 1.2rem;
+    font-family: inherit;
+  }
+}

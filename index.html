@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./assets/images/favicon-32x32.png"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <title>Frontend Mentor | Multi-step form</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="sidebar" id="sidebar">
+        <div class="step" id="step1">
+          <span class="stepNum activeNum">1</span>
+          <div class="stepinfo">
+            <p class="stepnum">STEP 1</p>
+            <p class="stepTitle">YOUR INFO</p>
+          </div>
+        </div>
+        <div class="step" id="step2">
+          <span class="stepNum">2</span>
+          <div class="stepinfo">
+            <p class="stepnum">STEP 2</p>
+            <p class="stepTitle">SELECT PLAN</p>
+          </div>
+        </div>
+        <div class="step" id="step3">
+          <span class="stepNum">3</span>
+          <div class="stepinfo">
+            <p class="stepnum">STEP 3</p>
+            <p class="stepTitle">ADD-ONS</p>
+          </div>
+        </div>
+        <div class="step" id="step4">
+          <span class="stepNum">4</span>
+          <div class="stepinfo">
+            <p class="stepnum">STEP 4</p>
+            <p class="stepTitle">SUMMARY</p>
+          </div>
+        </div>
+      </div>
+      <div class="main" id="main">
+        <div class="titlecontainer">
+          <h2 class="title">Personal info</h2>
+          <p class="titleinfo">
+            Please provide your name, email address and phone number.
+          </p>
+        </div>
+        <form class="personalForm">
+          <label for="name">Name</label>
+          <input
+            required
+            type="text"
+            placeholder="e.g. Stephen King"
+            id="name"
+          />
+          <label for="email">Email Address</label>
+          <input
+            required
+            type="email"
+            placeholder="e.g. stephenking@lorem.com"
+            id="email"
+          />
+          <label for="phonenum">Phone Number</label>
+          <input
+            required
+            type="text"
+            placeholder="e.g. +385 12 345 6789"
+            id="phonenum"
+            pattern="\+385[0-9]{9}"
+          />
+        </form>
+        <div class="buttoncont"><button>Next step</button></div>
+      </div>
+    </div>
+  </body>
+</html>
