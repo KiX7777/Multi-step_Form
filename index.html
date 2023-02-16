@@ -53,38 +53,176 @@
           </div>
         </div>
       </div>
-      <div class="main" id="main">
-        <div class="titlecontainer">
-          <h2 class="title">Personal info</h2>
-          <p class="titleinfo">
-            Please provide your name, email address and phone number.
-          </p>
+      <div class="right">
+        <div class="main" id="main1">
+          <div class="titlecontainer">
+            <h2 class="title">Personal info</h2>
+            <p class="titleinfo">
+              Please provide your name, email address and phone number.
+            </p>
+          </div>
+          <form class="personalForm">
+            <label for="name">Name</label>
+            <input
+              required
+              type="text"
+              placeholder="e.g. Stephen King"
+              id="name"
+            />
+            <label for="email">Email Address</label>
+            <input
+              required
+              type="email"
+              placeholder="e.g. stephenking@lorem.com"
+              id="email"
+            />
+            <label for="phonenum">Phone Number</label>
+            <input
+              required
+              type="text"
+              placeholder="e.g. +385 12 345 6789"
+              id="phonenum"
+              pattern="\+385[0-9]{9}"
+            />
+          </form>
+          <div class="buttoncont"><button>Next step</button></div>
         </div>
-        <form class="personalForm">
-          <label for="name">Name</label>
-          <input
-            required
-            type="text"
-            placeholder="e.g. Stephen King"
-            id="name"
-          />
-          <label for="email">Email Address</label>
-          <input
-            required
-            type="email"
-            placeholder="e.g. stephenking@lorem.com"
-            id="email"
-          />
-          <label for="phonenum">Phone Number</label>
-          <input
-            required
-            type="text"
-            placeholder="e.g. +385 12 345 6789"
-            id="phonenum"
-            pattern="\+385[0-9]{9}"
-          />
-        </form>
-        <div class="buttoncont"><button>Next step</button></div>
+        <div class="main" id="main2">
+          <div class="titlecontainer">
+            <h2 class="title">Select your plan</h2>
+            <p class="titleinfo">
+              You have the option of monthly or yearly billing.
+            </p>
+          </div>
+          <div class="plansContainer">
+            <div class="plans">
+              <div class="planOption">
+                <img src="/assets/images/icon-arcade.svg" alt="" />
+                <div class="planInfo">
+                  <h3 class="planTitle">Arcade</h3>
+                  <p class="planPrice">$9/mo</p>
+                  <p class="free">2 months free</p>
+                </div>
+              </div>
+              <div class="planOption activePlan">
+                <img src="/assets/images/icon-advanced.svg" alt="" />
+                <div class="planInfo">
+                  <h3 class="planTitle">Advanced</h3>
+                  <p class="planPrice">$12/mo</p>
+                  <p class="free">2 months free</p>
+                </div>
+              </div>
+              <div class="planOption">
+                <img src="/assets/images/icon-pro.svg" alt="" />
+                <div class="planInfo">
+                  <h3 class="planTitle">Pro</h3>
+                  <p class="planPrice">$15/mo</p>
+                  <p class="free">2 months free</p>
+                </div>
+              </div>
+            </div>
+            <div class="planToggle">
+              <p class="activeTime" id="monthly">Monthly</p>
+              <input type="checkbox" name="planTime" id="planTime" />
+              <p>Yearly</p>
+            </div>
+          </div>
+          <div class="buttons">
+            <div class="gobackBtn"><button>Go Back</button></div>
+            <div class="buttoncont"><button>Next step</button></div>
+          </div>
+        </div>
+        <div class="main" id="main3">
+          <div class="titlecontainer">
+            <h2 class="title">Pick add-ons</h2>
+            <p class="titleinfo">
+              Add-ons help enhance your gaming experience.
+            </p>
+          </div>
+          <div class="addOnsContainer">
+            <div class="addOnOption">
+              <input
+                disabled
+                type="checkbox"
+                class="addOn"
+                name="addOn"
+                id="addOn"
+              />
+              <div class="addOnInfo">
+                <h3>Online service</h3>
+                <p>Access to multiplayer games</p>
+              </div>
+              <p class="addOnPrice">+$1/mo</p>
+            </div>
+            <div class="addOnOption">
+              <input
+                disabled
+                type="checkbox"
+                class="addOn"
+                name="addOn"
+                id="addOn"
+              />
+              <div class="addOnInfo">
+                <h3>Larger storage</h3>
+                <p>Extra 1TB of cloud save</p>
+              </div>
+              <p class="addOnPrice">+$2/mo</p>
+            </div>
+            <div class="addOnOption">
+              <input
+                disabled
+                type="checkbox"
+                class="addOn"
+                name="addOn"
+                id="addOn"
+              />
+              <div class="addOnInfo">
+                <h3>Customizable profile</h3>
+                <p>Custom theme on your profile</p>
+              </div>
+              <p class="addOnPrice">+$2/mo</p>
+            </div>
+          </div>
+          <div class="buttons">
+            <div class="gobackBtn"><button>Go Back</button></div>
+            <div class="buttoncont"><button>Next step</button></div>
+          </div>
+        </div>
+        <div class="main" id="main4">
+          <div class="titlecontainer">
+            <h2 class="title">Finishing up</h2>
+            <p class="titleinfo">
+              Double-check everything looks OK before confirming.
+            </p>
+          </div>
+          <div class="summaryContainer">
+            <div class="mainsummary">
+              <div class="chosenPlan">
+                <h3 id="chosenName">Arcade(Yearly)</h3>
+                <a href="#">Change</a>
+              </div>
+              <div class="chosenPrice">$90/yr</div>
+            </div>
+            <div class="addonsSummary">
+              <div class="chosenAddon">
+                <p class="chosenAddonName">Online service</p>
+                <p class="chosenAddonPrice">+$10/yr</p>
+              </div>
+              <div class="chosenAddon">
+                <p class="chosenAddonName">Larger storage</p>
+                <p class="chosenAddonPrice">+$20/yr</p>
+              </div>
+            </div>
+            <div class="totalPriceSummary">
+              <p class="totaltext">Total (per year)</p>
+              <p class="totalPrice">$120/yr</p>
+            </div>
+          </div>
+          <div class="buttons">
+            <div class="gobackBtn"><button>Go Back</button></div>
+            <div class="buttoncont"><button>Confirm</button></div>
+          </div>
+        </div>
       </div>
     </div>
   </body>

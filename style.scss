@@ -32,14 +32,14 @@ body {
 }
 
 .container {
-  width: 70vw;
+  width: 60vw;
   height: 80vh;
   border-radius: 2rem;
   padding: 1rem;
   @include flex();
-  background-color: $lightergray;
+  background-color: white;
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
-  gap: 6rem;
+  gap: 2rem;
 }
 
 .sidebar {
@@ -49,19 +49,31 @@ body {
   background-position: center center;
   height: 100%;
   border-radius: 1rem;
-  width: 25%;
+  width: 30%;
+}
+.right {
+  flex-grow: 1;
+  height: 100%;
+
+  padding: 2rem 12rem 4rem 4rem;
 }
 .main {
   flex-grow: 1;
+  // display: none !important;
   border-radius: 1rem;
-  border: 1px solid #473dff;
+  // border: 1px solid #473dff;
   height: 100%;
+  width: 100%;
   @include flex();
   flex-direction: column;
-  padding: 6rem 8rem;
+  // padding: 4rem 8rem;
   // justify-content: flex-start;
   justify-content: space-between;
   align-items: flex-start;
+  ::selection {
+    background-color: #473dff;
+    color: $lightgray;
+  }
 }
 
 .sidebar {
@@ -98,11 +110,36 @@ body {
   border: 1px solid white;
   transition: 300ms ease;
 }
+.planInfo {
+  @include flex();
+  flex-direction: column;
+  gap: 0.2rem;
+  align-items: flex-start;
+}
 
 .stepNum.activeNum {
   background-color: white;
   color: #473dff;
 }
+
+.planOption.activePlan,
+.addOnOption.activePlan {
+  border: 2px solid $primarypurple;
+
+  // img {
+  //   border: 2px solid white;
+  //   border-radius: 50%;
+  // }
+}
+
+// .planOption.activePlan {
+//   p {
+//     color: $middlegray;
+//   }
+//   h3 {
+//     color: $lightgray;
+//   }
+// }
 
 .stepnum {
   font-size: 1.2rem;
@@ -132,12 +169,12 @@ body {
 }
 
 .main {
+  height: 100%;
   .titlecontainer,
   .buttoncont {
     flex-grow: 1;
   }
   form {
-    flex-grow: 5;
     @include flex();
     flex-direction: column;
     margin-top: 4rem;
@@ -147,13 +184,21 @@ body {
     justify-content: flex-start;
     gap: 1rem;
   }
+  .plansContainer {
+    height: 30rem;
+    flex-direction: column;
+    flex-grow: 5;
+    @include flex();
+    width: 100%;
+    gap: 2rem;
+  }
 }
 .main form {
   input {
     width: 100%;
-    padding: 1rem;
-    border-radius: 1rem;
-    border: 1px solid $middlegray;
+    padding: 1.4rem;
+    border-radius: 0.5rem;
+    border: 2px solid $middlegray;
   }
   input::placeholder {
     color: $darkgray;
@@ -162,7 +207,7 @@ body {
   input:focus {
     outline: 1px solid $primarypurple;
   }
-  input:invalid {
+  input:focus:invalid {
     outline: 1px solid red;
   }
   input:focus:valid {
@@ -173,6 +218,96 @@ body {
     color: $primaryblue;
     font-weight: 700;
     letter-spacing: 1px;
+  }
+}
+@keyframes free {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.planToggle {
+  @include flex();
+  width: 100%;
+  padding: 2rem;
+  gap: 1rem;
+  border-radius: 0.5rem;
+  background-color: #f8f9fe;
+
+  input {
+    appearance: none;
+    transition: 500ms ease;
+    padding: 1rem 2rem;
+    position: relative;
+    border-radius: 2rem;
+    background-color: #02295a;
+  }
+  input::before {
+    content: '';
+    width: 1.5rem;
+    transition: 300ms ease;
+    display: flex;
+    position: absolute;
+    left: 2px;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 1.5rem;
+    background-color: white;
+    border-radius: 50%;
+  }
+
+  input:checked {
+    background-color: $primarypurple;
+  }
+  input:checked::before {
+    // left: 1.5rem;
+    transform: translate(2.1rem, -50%);
+    top: 50%;
+  }
+  input:checked + p {
+    color: #02295a;
+  }
+  p {
+    font-size: 1.4rem;
+    color: #9699ab;
+    transition: 300ms ease;
+    font-weight: bold;
+  }
+  p.activeTime {
+    color: #02295a;
+  }
+}
+.plans {
+  @include flex();
+  width: 100%;
+  gap: 1rem;
+  cursor: pointer;
+}
+
+.planOption {
+  flex-basis: 33%;
+  transition: 300ms ease;
+
+  border: 2px solid $middlegray;
+  padding: 1rem 1.5rem;
+  border-radius: 1rem;
+  @include flex();
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  height: 15rem;
+
+  h3 {
+    font-size: 1.4rem;
+    margin-bottom: 0.4rem;
+    color: #02295a;
+  }
+  p {
+    font-size: 1.2rem;
+    color: $darkgray;
   }
 }
 
@@ -189,8 +324,228 @@ body {
     border-radius: 1rem;
     font-size: 1.2rem;
     font-family: inherit;
+    margin-top: 4rem;
   }
   button:hover {
     background-color: #473dff;
   }
+}
+.buttons {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 4rem;
+  width: 100%;
+}
+
+@keyframes container {
+  from {
+    opacity: 0;
+    // transform: translateX(-51%);
+    transform: rotateY(-100deg);
+  }
+  to {
+    opacity: 1;
+    // transform: translateX(0);
+    transform: rotateX(0deg);
+  }
+}
+
+.buttons .buttoncont {
+  flex-grow: initial;
+  button {
+    margin-top: 0;
+  }
+}
+
+.gobackBtn {
+  background-color: transparent;
+  color: $darkgray;
+  padding: 1rem 2rem;
+  cursor: pointer;
+  transition: 300ms ease;
+  border-radius: 1rem;
+  font-size: 1.2rem;
+  font-family: inherit;
+
+  button {
+    background-color: transparent;
+    border: none;
+    color: $darkgray;
+    cursor: pointer;
+    font-weight: 700;
+  }
+}
+
+#main4 {
+  .buttoncont button {
+    background-color: $primarypurple;
+    border-radius: 0.5rem;
+    border: none;
+  }
+}
+
+.gobackBtn:hover {
+  background-color: $middlegray;
+}
+
+#main1 {
+  display: flex;
+}
+
+#main2,
+#main3,
+#main4 {
+  display: none;
+}
+
+.free {
+  font-size: 1.2rem;
+  color: #02295a !important;
+  margin-top: 5px;
+  font-weight: bold;
+  display: none;
+  animation: free 500ms ease 0s 1 normal forwards;
+}
+
+.addOnsContainer {
+  @include flex();
+  width: 100%;
+  height: 70%;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.addOnOption {
+  width: 100%;
+  border: 2px solid $middlegray;
+  border-radius: 1rem;
+  display: flex;
+  padding: 2rem;
+  align-items: center;
+  transition: 300ms ease-out;
+  cursor: pointer;
+  justify-content: space-between;
+
+  .addOnPrice {
+    color: $primarypurple;
+    font-size: 1.2rem;
+  }
+
+  .addOnInfo {
+    display: flex;
+    width: 70%;
+    gap: 0.5rem;
+    flex-direction: column;
+    h3 {
+      font-size: 1.4rem;
+      color: $primaryblue;
+      font-weight: bold;
+    }
+    p {
+      font-size: 1.2rem;
+      color: #9699ab;
+    }
+  }
+  input {
+    width: 1.8rem;
+    height: 1.8rem;
+    pointer-events: none;
+    transition: 300ms ease;
+  }
+  input:checked {
+    accent-color: #473dff;
+  }
+}
+
+.summaryContainer,
+.chosenPlan,
+.addonsSummary {
+  @include flex();
+  flex-direction: column;
+  width: 100%;
+}
+
+.mainsummary,
+.chosenAddon,
+.totalPriceSummary {
+  @include flex();
+  width: 100%;
+  text-align: left;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.summaryContainer {
+  height: 70%;
+  padding: 2rem;
+  margin-top: 4rem;
+  justify-content: flex-start;
+  // justify-content: space-between;
+}
+
+.mainsummary {
+  padding: 2rem;
+  background-color: #f8f9fe;
+  justify-content: space-between;
+  border-bottom: 0.5px solid $darkgray;
+  border-radius: 0.5rem;
+}
+.chosenPlan {
+  width: fit-content;
+  gap: 0.2rem;
+  align-items: flex-start;
+  justify-content: flex-start;
+  h3 {
+    font-size: 1.4rem;
+    color: #02295a;
+  }
+  a {
+    color: #9699ab;
+  }
+  a:visited {
+    color: $darkgray;
+  }
+}
+
+.chosenAddon {
+  padding: 1.4rem 2rem;
+  background-color: #f8f9fe;
+  border-radius: 0.5rem;
+  justify-content: space-between;
+
+  .chosenAddonName {
+    color: #9699ab;
+  }
+  .chosenAddonPrice {
+    font-size: 1.2rem;
+    color: #02295a;
+    font-weight: bold;
+  }
+}
+.addonsSummary {
+  margin-bottom: 2rem;
+}
+.totalPriceSummary {
+  padding-left: 2rem;
+  padding-right: 1rem;
+  justify-content: space-between;
+  align-items: center;
+
+  .totaltext {
+    font-size: 1.4rem;
+    color: #9699ab;
+  }
+
+  .totalPrice {
+    font-size: 1.6rem;
+    color: $primarypurple;
+    font-weight: bold;
+  }
+}
+
+.chosenPrice {
+  font-size: 1.4rem;
+  color: #02295a;
+  font-weight: bold;
 }
