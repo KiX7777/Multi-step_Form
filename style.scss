@@ -126,10 +126,7 @@ body {
 .addOnOption.activePlan {
   border: 2px solid $primarypurple;
 
-  // img {
-  //   border: 2px solid white;
-  //   border-radius: 50%;
-  // }
+  background-color: $lightergray;
 }
 
 // .planOption.activePlan {
@@ -276,7 +273,7 @@ body {
     transition: 300ms ease;
     font-weight: bold;
   }
-  p.activeTime {
+  p:first-of-type {
     color: #02295a;
   }
 }
@@ -501,10 +498,15 @@ body {
     color: #02295a;
   }
   a {
-    color: #9699ab;
+    color: $primarypurple;
+    font-size: 1.2rem;
+    text-decoration: none;
   }
   a:visited {
-    color: $darkgray;
+    color: $primarypurple;
+  }
+  a:hover {
+    text-decoration: underline;
   }
 }
 

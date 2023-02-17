@@ -124,6 +124,7 @@ body {
 .planOption.activePlan,
 .addOnOption.activePlan {
   border: 2px solid #473dff;
+  background-color: hsl(231deg, 100%, 99%);
 }
 
 .stepnum {
@@ -264,7 +265,7 @@ body {
   transition: 300ms ease;
   font-weight: bold;
 }
-.planToggle p.activeTime {
+.planToggle p:first-of-type {
   color: #02295a;
 }
 
@@ -491,10 +492,15 @@ body {
   color: #02295a;
 }
 .chosenPlan a {
-  color: #9699ab;
+  color: #473dff;
+  font-size: 1.2rem;
+  text-decoration: none;
 }
 .chosenPlan a:visited {
-  color: #9699ab;
+  color: #473dff;
+}
+.chosenPlan a:hover {
+  text-decoration: underline;
 }
 
 .chosenAddon {
