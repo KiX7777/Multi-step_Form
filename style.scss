@@ -448,6 +448,7 @@ body {
     width: 1.8rem;
     height: 1.8rem;
     pointer-events: none;
+    cursor: pointer;
     transition: 300ms ease;
   }
   input:checked {
@@ -488,6 +489,7 @@ body {
   border-bottom: 0.5px solid $darkgray;
   border-radius: 0.5rem;
 }
+
 .chosenPlan {
   width: fit-content;
   gap: 0.2rem;
