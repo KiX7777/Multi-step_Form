@@ -118,8 +118,8 @@ body {
 }
 
 .stepNum.activeNum {
-  background-color: white;
-  color: #473dff;
+  background-color: #c2e0f4;
+  color: #02295a;
 }
 
 .planOption.activePlan,
@@ -193,6 +193,7 @@ body {
 .main form {
   input {
     width: 100%;
+    cursor: pointer;
     padding: 1.4rem;
     border-radius: 0.5rem;
     border: 2px solid $middlegray;
@@ -316,6 +317,7 @@ body {
     background-color: #02295a;
     color: #f0f6ff;
     padding: 1rem 2rem;
+    border: none;
     cursor: pointer;
     transition: 300ms ease;
     border-radius: 1rem;
@@ -492,7 +494,7 @@ body {
 
 .chosenPlan {
   width: fit-content;
-  gap: 0.2rem;
+  gap: 0.4rem;
   align-items: flex-start;
   justify-content: flex-start;
   h3 {
@@ -552,4 +554,49 @@ body {
   font-size: 1.4rem;
   color: #02295a;
   font-weight: bold;
+}
+
+.main {
+  // display: none !important;
+}
+
+#end {
+  visibility: hidden;
+  width: 100%;
+  @include flex();
+  flex-direction: column;
+  z-index: 10;
+  height: 100%;
+  // animation: end 300ms ease 0s 1 normal forwards;
+  gap: 2rem;
+  padding: 4rem 7rem;
+
+  img {
+    width: 7rem;
+    margin-bottom: 1rem;
+  }
+
+  h3 {
+    font-size: 3.2rem;
+    color: #02295a;
+  }
+
+  p {
+    font-size: 1.4rem;
+    color: $darkgray;
+    line-height: 1.4;
+    text-align: center;
+  }
+}
+.confirm {
+  cursor: pointer;
+}
+
+@keyframes end {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

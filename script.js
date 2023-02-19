@@ -13,11 +13,17 @@ const changePlan = document.querySelector('.changePlan');
 const addonsSummary = document.querySelector('.addonsSummary');
 const chosenPlan = document.querySelector('.chosenPlan');
 const chosenPrice = document.querySelector('.chosenPrice');
+const inputs = document.querySelectorAll('.personalForm input');
+const form = document.querySelectorAll('.personalForm ');
 const nextBtns = document.querySelectorAll('.nextBtn');
 const gobackBtns = document.querySelectorAll('.gobackBtn');
 const next1 = document.getElementById('next1');
 const next2 = document.getElementById('next2');
 const next3 = document.getElementById('next3');
+const totalPrice = document.querySelector('.totalPrice');
+const totaltext = document.querySelector('.totaltext');
+const confirmBtn = document.querySelector('.confirm');
+const thankyou = document.getElementById('end');
 
 let state = {
   time: 'Monthly',
@@ -26,19 +32,28 @@ let state = {
 
 stepNums.forEach((num) => {
   num.addEventListener('click', () => {
-    stepNums.forEach((num) => {
-      num.classList.remove('activeNum');
-    });
-    num.classList.toggle('activeNum');
-    mainConts.forEach((cont) => {
-      cont.style.display = 'none';
-      cont.classList.remove('activeStep');
-    });
-    let contID = num.textContent - 1;
-    mainConts[contID].style.display = 'flex';
-    mainConts[contID].style.animation =
-      'container 700ms ease 0s 1 normal forwards';
-    mainConts[contID].classList.add('activeStep');
+    if (
+      !inputs[0].validity.valid ||
+      !inputs[2].validity.valid ||
+      !inputs[2].validity.valid
+    ) {
+      return;
+    } else {
+      stepNums.forEach((num) => {
+        num.classList.remove('activeNum');
+      });
+      num.classList.toggle('activeNum');
+      mainConts.forEach((cont) => {
+        cont.style.display = 'none';
+        cont.classList.remove('activeStep');
+      });
+      let contID = num.textContent - 1;
+      mainConts[contID].style.display = 'flex';
+      mainConts[contID].style.animation =
+        'container 700ms ease 0s 1 normal forwards';
+      mainConts[contID].classList.add('activeStep');
+      nextStep();
+    }
   });
 });
 
@@ -105,10 +120,10 @@ changePlan.addEventListener('click', () => {
   mainConts.forEach((cont) => {
     cont.style.display = 'none';
   });
-  mainConts[2].style.display = 'flex';
-  mainConts[2].style.animation = 'container 700ms ease 0s 1 normal forwards';
+  mainConts[1].style.display = 'flex';
+  mainConts[1].style.animation = 'container 700ms ease 0s 1 normal forwards';
   stepNums.forEach((step) => step.classList.remove('activeNum'));
-  stepNums[2].classList.add('activeNum');
+  stepNums[1].classList.add('activeNum');
 });
 
 function nextStep() {
@@ -122,9 +137,6 @@ function nextStep() {
   state.selectedPlan = selectedPlanName;
   let chosenPlanName = chosenPlan.querySelector('h3');
   chosenPlanName.textContent = `${state.selectedPlan}(${state.time})`;
-  // chosenPlan.style.fontSize = '1.4rem';
-  // chosenPlan.style.fontWeight = '700';
-  // chosenPlan.style.color = '#02295a';
 
   chosenPrice.textContent = state.planPrice;
   selectedAddons.forEach((add) => {
@@ -146,16 +158,36 @@ function nextStep() {
       <p class="chosenAddonPrice">${addonPrice}</p>
   </div>`;
   });
-}
 
-next2.addEventListener('click', () => {
+  // state.totalPrice =
+
+  state.time === 'Monthly'
+    ? (totaltext.textContent = `Total (per month)`)
+    : (totaltext.textContent = `Total (per year)`);
+
+  let summaryPrices = [];
+  let chosenPlanPrice = parseInt(chosenPrice.textContent.slice(1));
+  summaryPrices.push(chosenPlanPrice);
+  state.selectedAddons.forEach((add) => {
+    let price = parseInt(add.addonPrice.slice(2));
+    summaryPrices.push(price);
+  });
+
+  let summary = summaryPrices.reduce((total, num) => {
+    return total + num;
+  });
+
+  totalPrice.textContent = `$${summary}/${
+    state.time === 'Monthly' ? 'mo' : 'yr'
+  }`;
+}
+-next2.addEventListener('click', () => {
   nextStep();
   console.log(state);
 });
 
 next3.addEventListener('click', () => {
   nextStep();
-  console.log(...state.selectedAddons);
 });
 
 function switchtoNextStep() {
@@ -181,7 +213,17 @@ function switchtoNextStep() {
 // next2.addEventListener('click', switchtoNextStep);
 
 nextBtns.forEach((btn) => {
-  btn.addEventListener('click', switchtoNextStep);
+  btn.addEventListener('click', () => {
+    if (
+      !inputs[0].validity.valid ||
+      !inputs[2].validity.valid ||
+      !inputs[2].validity.valid
+    ) {
+      return;
+    } else {
+      switchtoNextStep();
+    }
+  });
 });
 
 function goBack() {
@@ -205,4 +247,18 @@ function goBack() {
 
 gobackBtns.forEach((btn) => {
   btn.addEventListener('click', goBack);
+});
+
+confirmBtn.addEventListener('click', () => {
+  mainConts.forEach((cont) => {
+    cont.style.display = 'none';
+    cont.classList.remove('activeStep');
+  });
+  console.log(end);
+  end.style.visibility = 'visible';
+  end.style.animation = 'end 500ms ease 0s 1 normal forwards';
+  stepNums.forEach((num) => {
+    num.classList.remove('activeNum');
+    num.style.pointerEvents = 'none';
+  });
 });
