@@ -143,20 +143,37 @@ function nextStep() {
     let addonName = add.querySelector('h3').textContent;
     let addonPrice = add.querySelector('.addOnPrice').textContent;
 
+    let addonprice = parseInt(addonPrice.slice(2));
     if (!state.selectedAddons.includes(addonName)) {
       //if the addon is not selected log it to the state, otherwise skip it
-      let addon = {
-        addonName: addonName,
-        addonPrice: addonPrice,
-      };
-      state.selectedAddons.push(addon);
+      if (state.time === 'Yearly') {
+        let addon = {
+          addonName: addonName,
+          addonPrice: addonprice * 12,
+        };
+        state.selectedAddons.push(addon);
+      } else {
+        let addon = {
+          addonName: addonName,
+          addonPrice: addonprice,
+        };
+        state.selectedAddons.push(addon);
+      }
     }
 
-    addonsSummary.innerHTML += ` 
+    if (state.time === 'Yearly') {
+      addonsSummary.innerHTML += ` 
+     <div class="chosenAddon">
+      <p class="chosenAddonName">${addonName}</p>
+      <p class="chosenAddonPrice">+$${addonprice * 12}/yr</p>
+  </div>`;
+    } else {
+      addonsSummary.innerHTML += ` 
     <div class="chosenAddon">
       <p class="chosenAddonName">${addonName}</p>
       <p class="chosenAddonPrice">${addonPrice}</p>
   </div>`;
+    }
   });
 
   // state.totalPrice =
@@ -169,14 +186,14 @@ function nextStep() {
   let chosenPlanPrice = parseInt(chosenPrice.textContent.slice(1));
   summaryPrices.push(chosenPlanPrice);
   state.selectedAddons.forEach((add) => {
-    let price = parseInt(add.addonPrice.slice(2));
-    summaryPrices.push(price);
+    summaryPrices.push(add.addonPrice);
   });
 
   let summary = summaryPrices.reduce((total, num) => {
     return total + num;
   });
 
+  console.log(summaryPrices);
   totalPrice.textContent = `$${summary}/${
     state.time === 'Monthly' ? 'mo' : 'yr'
   }`;
